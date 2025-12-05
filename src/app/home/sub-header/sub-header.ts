@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
   selector: 'bulkly-sub-header',
   imports: [],
   templateUrl: './sub-header.html',
-  styleUrl: './sub-header.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubHeader {

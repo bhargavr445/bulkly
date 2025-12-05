@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, HostListener, signal, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({

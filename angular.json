@@ -9,7 +9,13 @@
   "projects": {
     "bulkly": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular": {
+          "component": {
+            "changeDetection": "OnPush"
+          }
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "bulkly",

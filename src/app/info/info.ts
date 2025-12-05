@@ -1,4 +1,4 @@
-import { Component, effect, linkedSignal, input as routeInput, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, linkedSignal, input as routeInput } from '@angular/core';
 
 @Component({
   selector: 'bulkly-info',

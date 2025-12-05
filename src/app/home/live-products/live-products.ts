@@ -5,7 +5,6 @@ import { Product } from "./product/product";
   selector: 'bulkly-live-products',
   imports: [Product],
   templateUrl: './live-products.html',
-  styleUrl: './live-products.css',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LiveProducts {

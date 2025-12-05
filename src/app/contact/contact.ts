@@ -1,7 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ContactForm } from "./contact-form/contact-form";
-import { ManufacturerInfo } from "./manufacturer-info/manufacturer-info";
 import { ContactInfo } from "./contact-info/contact-info";
+import { ManufacturerInfo } from "./manufacturer-info/manufacturer-info";
 
 @Component({
   selector: 'bulkly-contact',

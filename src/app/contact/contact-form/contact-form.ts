@@ -9,7 +9,7 @@ import { Field, form, maxLength, required } from '@angular/forms/signals';
 })
 export class ContactForm {
 
-  formMetaData = signal({
+  formMetaData = signal<ContactFormI>({
     name: '',
     email: '',
     subject: '',
@@ -17,10 +17,10 @@ export class ContactForm {
   })
 
   contactForm = form(this.formMetaData, (path) => {
-    required(path.name),
-    required(path.email),
-    required(path.subject),
-    maxLength(path.subject, 20)
+    required(path.name, { message: requiredMessage }),
+      required(path.email, { message: requiredMessage }),
+      required(path.subject, { message: requiredMessage }),
+      maxLength(path.subject, 20, { message: requiredMessage })
   })
 
   sendMessage(event: any) {
@@ -29,3 +29,11 @@ export class ContactForm {
   }
 
 }
+
+interface ContactFormI {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+}
+const requiredMessage = 'This is required field.'

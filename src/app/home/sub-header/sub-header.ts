@@ -13,7 +13,7 @@ export class SubHeader {
     router = inject(Router);
 
   scrollTo(id: string) {
-    this.router.navigate([`info/${id}`]);
+    this.router.navigate([`info`], {fragment: id});
   }
 
 }

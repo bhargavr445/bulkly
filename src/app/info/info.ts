@@ -1,36 +1,17 @@
-import { ChangeDetectionStrategy, Component, effect, linkedSignal, input as routeInput } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ActivatedRoute, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'bulkly-info',
-  imports: [],
+  imports: [RouterLink, AsyncPipe],
   templateUrl: './info.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Info {
 
-  sectionId = routeInput.required<string>();
-  sectionIdLinked = linkedSignal(() => this.sectionId());
+  #route = inject(ActivatedRoute);
 
-  constructor() {
-    effect(() => {
-      this.scrollTo(this.sectionId())
-    })
-  }
-
-  scrollTo(id: string): void {
-    this.sectionIdLinked.set(id);
-    const element = document.getElementById(id);
-    if (!element) {
-      return;
-    }
-    const headerOffset = 90;
-    const elementPosition = element.getBoundingClientRect().top;
-    const offsetPosition = elementPosition + window.scrollY - headerOffset;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth'
-    });
-  }
+  sectionIdLinked$ = this.#route.fragment;
 
 }

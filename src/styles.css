@@ -6,8 +6,13 @@
    but apply a safe box-sizing reset for predictable layout. */
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
+    scroll-margin-top: 100px;
 }
-*, *::before, *::after {
+
+*,
+*::before,
+*::after {
     box-sizing: inherit;
 }
 

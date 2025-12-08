@@ -10,7 +10,7 @@
         <div>
             @let nameControl = contactForm.name;
             <label class="block text-sm font-medium text-slate-800 mb-1">
-                Name
+                Name *
             </label>
             <input type="text" placeholder="Your name" [field]="nameControl"
                 class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
@@ -25,7 +25,7 @@
         <div>
             @let emailControl = contactForm.email;
             <label class="block text-sm font-medium text-slate-800 mb-1">
-                Email
+                Email *
             </label>
             <input type="email" placeholder="your.email@example.com" [field]="emailControl"
                 class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
@@ -40,7 +40,7 @@
         <div>
             @let subjectControl = contactForm.subject;
             <label class="block text-sm font-medium text-slate-800 mb-1">
-                Subject
+                Subject *
             </label>
             <input type="text" placeholder="How can we help?" [field]="subjectControl"
                 class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />

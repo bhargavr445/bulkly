@@ -13,6 +13,12 @@ export class Header {
   mobileOpen = signal(false);
   scrolled = signal(false);
 
+  navList = [
+    { label: 'Home', navPath: 'home' },
+    { label: 'About Us', navPath: 'about-us' },
+    { label: 'Contact', navPath: 'contact' }
+  ];
+
   @HostListener('window:scroll')
   onScroll() {
     this.scrolled.set(window.scrollY > 20);   // shrink after 20px scroll

@@ -1,10 +1,7 @@
 <section class="bg-gradient-to-b from-sky-50 to-sky-100/40 py-12 md:py-16">
     <div class="mx-auto max-w-5xl px-4 text-center">
         <!-- Title -->
-        <p class="text-sm font-medium text-slate-900">
-            Redefining Trust in E-commerce
-        </p>
-
+        <p class="text-sm font-medium text-slate-900">Redefining Trust in E-commerce</p>
         <h5 class="mt-4 mx-auto max-w-xl 
            text-xl leading-snug text-slate-900
            md:text-xl md:leading-tight">
@@ -12,72 +9,24 @@
             Fair prices through collective buying.
             100% guaranteed.
         </h5>
-
         <!-- Feature icons row -->
         <div class="mt-10 grid grid-cols-2 gap-y-10 gap-x-4
              sm:max-w-xl sm:mx-auto
              md:max-w-none md:grid-cols-4 md:gap-y-0">
             <!-- Quality Verified -->
-            <button (click)="scrollTo('quality_verified')" class="flex flex-col items-center gap-3 cursor-pointer 
-         focus:outline-none hover:opacity-90 
-         transition active:scale-95 duration-150">
+            @for (item of subHeaderItemsList; track item.navPath) {
+            <button (click)="scrollTo(item.navPath)" class="flex flex-col items-center gap-3 cursor-pointer 
+              focus:outline-none hover:opacity-90 
+              transition active:scale-95 duration-150">
                 <div class="flex h-16 w-16 items-center justify-center rounded-full
-                    bg-blue-600 text-2xl text-white shadow-md">
-                    ✓
+                         bg-blue-600 text-2xl text-white shadow-md">
+                    {{item.icon}}
                 </div>
                 <p class="text-sm font-medium text-slate-900 sm:text-base">
-                    Quality Verified
+                    {{item.label}}
                 </p>
             </button>
-
-
-
-            <!-- 100% Guaranteed -->
-            <button (click)="scrollTo('guaranteed')" class="flex flex-col items-center gap-3 cursor-pointer 
-         focus:outline-none hover:opacity-90 
-         transition active:scale-95 duration-150">
-
-                <div class="flex h-16 w-16 items-center justify-center rounded-full
-        bg-blue-600 text-2xl text-white shadow-md">
-                    🛡️
-                </div>
-
-                <p class="text-sm font-medium text-slate-900 sm:text-base">
-                    100% Guaranteed
-                </p>
-            </button>
-
-
-            <!-- Fair Pricing -->
-            <button (click)="scrollTo('fair_pricing')" class="flex flex-col items-center gap-3 cursor-pointer 
-         focus:outline-none hover:opacity-90 
-         transition active:scale-95 duration-150">
-
-                <div class="flex h-16 w-16 items-center justify-center rounded-full
-        bg-blue-600 text-2xl text-white shadow-md">
-                    📈
-                </div>
-
-                <p class="text-sm font-medium text-slate-900 sm:text-base">
-                    Fair Pricing
-                </p>
-            </button>
-
-
-            <!-- Direct from Makers -->
-            <button (click)="scrollTo('direct_from_makers')" class="flex flex-col items-center gap-3 cursor-pointer 
-         focus:outline-none hover:opacity-90 
-         transition active:scale-95 duration-150">
-
-                <div class="flex h-16 w-16 items-center justify-center rounded-full
-        bg-blue-600 text-2xl text-white shadow-md">
-                    👥
-                </div>
-
-                <p class="text-sm font-medium text-slate-900 sm:text-base">
-                    Direct from Makers
-                </p>
-            </button>
+            }
         </div>
     </div>
 </section>

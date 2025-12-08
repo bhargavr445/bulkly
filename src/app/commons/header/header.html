@@ -1,42 +1,30 @@
 <header
   [ngClass]="scrolled() ? 'shrink-header' : 'normal-header'"
-  class="sticky top-0 z-40 w-full border-b border-slate-100 bg-gradient-to-b from-sky-50 to-white transition-all duration-300"
->  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
+  class="sticky top-0 z-40 w-full border-b border-slate-100 bg-gradient-to-b from-sky-50 to-white transition-all duration-300">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
     <!-- Logo -->
-    <div class="flex items-center gap-3">
-      <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 shadow-md md:h-12 md:w-12">
-        <span class="text-lg font-semibold text-white md:text-xl">B</span>
+    <a [routerLink]="'home'" class="flex items-center gap-3 group">
+      <div class="flex h-10 w-10 items-center justify-center rounded-2xl bg-indigo-600 shadow-md 
+                  transition duration-300 group-hover:bg-indigo-700 md:h-12 md:w-12">
+        <span class="text-lg font-semibold text-white md:text-xl transition duration-300 group-hover:scale-105">B</span>
       </div>
-      <span class="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl">
+    
+      <span class="text-xl font-semibold tracking-tight text-slate-900 md:text-2xl 
+               transition duration-300 group-hover:text-indigo-700">
         Bulkly
       </span>
-    </div>
+    </a>
 
     <!-- Center nav (desktop only) -->
     <nav class="hidden gap-10 text-sm font-medium text-slate-700 md:flex">
-      <a
-        routerLink="home"
-        routerLinkActive="text-blue-600 border-b-2 border-blue-600"
-        class="inline-block pb-1 hover:text-blue-600 transition"
-      >
-        Home
+      @for (navItem of navList; track navItem.navPath) {
+      <a [routerLink]="navItem.navPath" routerLinkActive="text-blue-600 border-b-2 border-blue-600"
+        class="inline-block pb-1 hover:text-blue-600 transition">
+        {{navItem.label}}
       </a>
+      }
 
-      <a
-        routerLink="about-us"
-        routerLinkActive="text-blue-600 border-b-2 border-blue-600"
-        class="inline-block pb-1 hover:text-blue-600 transition"
-      >
-        About Us
-      </a>
 
-      <a
-        routerLink="contact"
-        routerLinkActive="text-blue-600 border-b-2 border-blue-600"
-        class="inline-block pb-1 hover:text-blue-600 transition"
-      >
-        Contact
-      </a>
     </nav>
 
     <!-- Right actions (desktop) -->

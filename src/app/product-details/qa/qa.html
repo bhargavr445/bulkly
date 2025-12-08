@@ -1,0 +1,78 @@
+<form class="rounded-3xl border border-slate-200 bg-white p-6 md:p-8 mt-6" (submit)="postQuestion($event)">
+
+    <!-- Title -->
+    <h3 class="text-lg font-semibold text-slate-900 md:text-xl">
+        Still have doubts? Ask a question
+    </h3>
+
+    <!-- Textarea -->
+    <div class="mt-4">
+        @let questionControl = qaForm.question;
+        <textarea [field]="questionControl" rows="3" placeholder="Type your question here..." class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900
+             outline-none focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500
+             md:text-base">
+        </textarea>
+        @if (questionControl().touched() && questionControl().invalid()) {
+        <p class="mt-1 text-sm text-red-500">
+            @for (item of questionControl().errors(); track item.message) {
+            {{item.message}}
+            }
+        </p>
+        }
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="mt-5 rounded-xl bg-slate-900 px-4 py-3 text-sm font-medium text-white 
+           hover:bg-black md:text-base">
+        Submit Question
+    </button>
+
+
+</form>
+<section class="rounded-3xl border border-slate-200 bg-white p-6 md:p-8 mt-6">
+    <!-- Q&A list -->
+    <h2 class="text-base font-semibold text-slate-900 md:text-lg">
+        Customer Questions
+    </h2>
+    <div class="mt-6 space-y-6">
+        <!-- Q&A item -->
+        @for (qaObj of qaResponse(); track qaObj) {
+        <article
+            class="rounded-3xl border border-slate-200 bg-white/80 shadow-sm px-4 py-4 md:px-6 md:py-5 hover:shadow-lg">
+            <!-- header: avatar + name + date -->
+            <div class="flex items-start gap-3">
+                <!-- Little bubble icon -->
+                <div
+                    class="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-sky-50 text-sky-600 shadow-sm">
+                    💬
+                </div>
+
+                <div class="flex-1">
+                    @let question = qaObj.question;
+                    <div class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm md:text-base">
+                        <span class="font-semibold text-slate-900">{{question.askedBy}}</span>
+                        <span class="text-xs text-slate-400 md:text-sm">• {{question.dateAskedOn}}</span>
+                    </div>
+
+                    <!-- Question text -->
+                    <p class="mt-1 text-sm text-slate-800 md:text-base">
+                        {{question.questionText}}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Answer bubble -->
+            <div class="mt-4 rounded-2xl bg-sky-50 px-4 py-3 text-xs text-slate-700 md:text-sm">
+                @let answer = qaObj.answer;
+                <span class="font-semibold text-sky-700">
+                    {{answer.source}}
+                </span>
+                <p class="mt-1 leading-relaxed">
+                    {{answer.answerText}}
+
+                </p>
+            </div>
+        </article>
+        }
+    </div>
+</section>

@@ -10,10 +10,17 @@ import { Router } from '@angular/router';
 })
 export class SubHeader {
 
-    router = inject(Router);
+  router = inject(Router);
+
+  subHeaderItemsList = [
+    { label: 'Quality Verified', icon: '✓', navPath: 'quality_verified' },
+    { label: '100% Guaranteed', icon: '🛡️', navPath: 'guaranteed' },
+    { label: 'Fair Pricing', icon: '📈', navPath: 'fair_pricing' },
+    { label: 'Direct from Makers', icon: '👥', navPath: 'direct_from_makers' },
+  ];
 
   scrollTo(id: string) {
-    this.router.navigate([`info/${id}`]);
+    this.router.navigate([`info`], { fragment: id });
   }
 
 }

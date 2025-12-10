@@ -1,6 +1,8 @@
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { ApplicationConfig, inject, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideSignalFormsConfig, SignalFormsConfig } from '@angular/forms/signals';
 import { IsActiveMatchOptions, provideRouter, Router, UrlTree, ViewTransitionInfo, withComponentInputBinding, withInMemoryScrolling, withRouterConfig, withViewTransitions } from '@angular/router';
+import { appInterceptor } from './app-interceptor';
 import { routes } from './app.routes';
 
 const NG_STATUS_CLASSES: SignalFormsConfig['classes'] = {
@@ -15,6 +17,7 @@ const NG_STATUS_CLASSES: SignalFormsConfig['classes'] = {
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(withInterceptors([appInterceptor])),
     provideBrowserGlobalErrorListeners(),
     /* Providing all the css classes that needs to be generated based on form status */
     provideSignalFormsConfig({ classes: NG_STATUS_CLASSES }),

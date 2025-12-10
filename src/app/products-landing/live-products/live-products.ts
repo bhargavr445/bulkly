@@ -1,6 +1,7 @@
-import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
+import { ProductI } from '../../interfaces/productI';
+import { ProductsLandingStore } from '../store/products-landing-store';
 import { Product } from "./product/product";
-import { ProductsService } from '../../commons/services/products-service';
 
 @Component({
   selector: 'bulkly-live-products',
@@ -9,19 +10,14 @@ import { ProductsService } from '../../commons/services/products-service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LiveProducts {
-  
-  #productsService = inject(ProductsService);
+
+  #productsLandingStore = inject(ProductsLandingStore);
+
+  productsList: Signal<ProductI[]> = this.#productsLandingStore.productsListC;
+  productsListError: Signal<any> = this.#productsLandingStore.productsListErrorC;
 
   constructor() {
-    this.getLiveProducts();
+    this.#productsLandingStore.fetchAllLiveProducts();
   }
-
-  getLiveProducts() {
-    this.#productsService.fetchLiveProducrs().subscribe(
-      (response) => {console.log(response)},
-      (error) => {console.log(error)},
-    )
-  }
-
 
 }

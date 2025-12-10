@@ -13,7 +13,8 @@
         "@schematics/angular": {
           "component": {
             "changeDetection": "OnPush",
-            "skipTests": true
+            "skipTests": true,
+            "inlineStyle": true
           }
         }
       },

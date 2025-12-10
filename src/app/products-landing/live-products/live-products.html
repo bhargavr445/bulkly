@@ -13,17 +13,12 @@
     <!-- Cards -->
     <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       <!-- Card 1 -->
-      
-
-      <bulkly-product [percent]="20"/>
-      <bulkly-product [percent]="70"/>
-      <bulkly-product [percent]="40"/>
-      <bulkly-product [percent]="80"/>
-      <!-- <bulkly-product [percent]="90"/>
-      <bulkly-product [percent]="100"/>
-      <bulkly-product [percent]="20"/>
-      <bulkly-product [percent]="10"/> -->
-    
+      <!-- {{productsList() | async}} -->
+      @if (productsList()?.length > 0) {
+      @for (item of productsList(); track item.productId) {
+      <bulkly-product [product]="item" />
+      }
+      }
     </div>
   </div>
 </section>

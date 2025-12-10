@@ -1,9 +1,8 @@
-import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
-import { Work } from "./work/work";
-import { SubHeader } from "./sub-header/sub-header";
-import { LiveProducts } from "./live-products/live-products";
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ComingSoon } from "./coming-soon/coming-soon";
+import { LiveProducts } from "./live-products/live-products";
+import { SubHeader } from "./sub-header/sub-header";
+import { Work } from "./work/work";
 
 @Component({
   selector: 'bulkly-products-landing',

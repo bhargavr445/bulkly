@@ -9,46 +9,51 @@
 
     <!-- Content -->
     <div class="flex flex-1 flex-col p-5">
-        <h3 class="text-sm font-semibold text-slate-900 md:text-base hover:text-blue-600 transition">
-            SmartAir Pro 5000 Air Purifier
+        <h3 class="text-sm font-semibold text-slate-900 md:text-base hover:text-blue-600 transition">{{product()?.name}}
         </h3>
-        <p class="mt-1 text-xs text-slate-500 md:text-sm">
-            Medical-grade HEPA filtration with AI-powered air quality monitoring
-        </p>
+        <p class="mt-1 text-xs text-slate-500 md:text-sm">{{product()?.description}}</p>
 
         <!-- Orders / progress -->
         <div class="mt-4 space-y-2 text-xs text-slate-600">
             <div class="flex items-center justify-between">
                 <span>Orders</span>
-                <span>324/1000</span>
+                <span>{{product()?.ordersPlaced}}/{{product()?.ordersRequired}}</span>
             </div>
             <div class="h-1.5 w-full rounded-full bg-slate-100">
                 @if(percent()) {
-                <div class="h-1.5 rounded-full bg-slate-900" [style]="`width: ${percent()}%`"></div>
+                <div class="h-1.5 rounded-full bg-slate-900" [style]="`width: ${(percent())}%`"></div>
                 }
             </div>
             <div class="flex items-center justify-between text-[11px] md:text-xs">
-                <span>-19 days left</span>
-                <span>32% funded</span>
+                <span>-{{noOfDaysLeft()}} days left</span>
+                <span>{{percent()}}% funded</span>
             </div>
         </div>
 
         <!-- Price -->
         <div class="mt-4 text-sm md:text-base">
-            <span class="font-semibold text-sky-700">₹12,999</span>
-            <span class="ml-2 text-xs text-slate-400 line-through">₹12,999</span>
+            <span class="font-semibold text-sky-700">{{product()?.offerPrice}}</span>
+            <span class="ml-2 text-xs text-slate-400 line-through">{{product()?.actualPrice}}</span>
         </div>
 
         <!-- Actions -->
         <div class="mt-4 flex items-center gap-3">
-            <button (click)="navigateToProductDetails()"
+            <button (click)="navigateToProductDetails(product().productId)"
                 class="flex-1 rounded-full bg-slate-900 py-2.5 text-center text-xs font-semibold text-white shadow-sm hover:bg-black md:text-sm">
                 View Details
             </button>
             <button
                 class="flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-600 hover:bg-slate-50"
                 aria-label="Share product">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share2 lucide-share-2 h-4 w-4 mr-2" aria-hidden="true"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-share2 lucide-share-2 h-4 w-4 mr-2" aria-hidden="true">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line>
+                    <line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line>
+                </svg>
             </button>
         </div>
     </div>

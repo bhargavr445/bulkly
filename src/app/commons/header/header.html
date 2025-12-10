@@ -1,6 +1,5 @@
 <header
-  [ngClass]="scrolled() ? 'shrink-header' : 'normal-header'"
-  class="sticky top-0 z-40 w-full border-b border-slate-100 bg-gradient-to-b from-sky-50 to-white transition-all duration-300">
+  [class]="`sticky top-0 z-40 w-full border-b border-slate-100 bg-gradient-to-b from-sky-50 to-white transition-all duration-300 ${scrolled() ? 'shrink-header' : 'normal-header'}`">
   <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 md:px-6 md:py-4">
     <!-- Logo -->
     <a [routerLink]="'home'" class="flex items-center gap-3 group">
@@ -18,8 +17,8 @@
     <!-- Center nav (desktop only) -->
     <nav class="hidden gap-10 text-sm font-medium text-slate-700 md:flex">
       @for (navItem of navList; track navItem.navPath) {
-      <a [routerLink]="navItem.navPath" routerLinkActive="text-blue-600 border-b-2 border-blue-600"
-        class="inline-block pb-1 hover:text-blue-600 transition">
+      <a [routerLink]="navItem.navPath" routerLinkActive="text-blue-600 border-b-2 border-blue-600 text-sm"
+        class="inline-block pb-1 text-sm hover:text-blue-600 transition">
         {{navItem.label}}
       </a>
       }
@@ -29,56 +28,45 @@
 
     <!-- Right actions (desktop) -->
     <div class="hidden items-center gap-4 md:flex">
-      <div
-        class="hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-700 lg:flex"
-      >
-        <span class="text-lg">👤</span>
-      </div>
-
       <button
-        class="rounded-full bg-slate-900 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black"
-      >
+        class="hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-700 lg:flex">
+        <span class="text-lg">👤</span>
+      </button>
+
+      <button class="rounded-full bg-slate-900 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black">
         Customer Login
       </button>
 
       <button
-        class="rounded-full border border-slate-300 bg-white px-6 py-2 text-sm font-semibold text-slate-900 hover:border-slate-400"
-      >
+        class="rounded-full border border-slate-300 bg-white px-6 py-2 text-sm font-semibold text-slate-900 hover:border-slate-400">
         Vendor Login
       </button>
     </div>
 
     <!-- Right actions (mobile) -->
     <div class="flex items-center gap-3 md:hidden">
-      <button
-        type="button"
+      <button type="button"
         class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 text-slate-800"
-        aria-label="Account"
-      >
+        aria-label="Account">
         👤
       </button>
 
-      <button
-        type="button"
+      <button type="button"
         class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 text-slate-800"
-        (click)="mobileOpen.set(true)"
-        aria-label="Open navigation menu"
-      >
+        (click)="mobileOpen.set(true)" aria-label="Open navigation menu">
         ☰
       </button>
     </div>
   </div>
 
   <!-- Mobile slide-over menu -->
-   @if (mobileOpen()) {
+  @if (mobileOpen()) {
   <div class="fixed inset-0 z-40 md:hidden">
     <!-- Backdrop -->
     <div class="absolute inset-0 bg-black/30" (click)="closeMobileMenu()"></div>
 
     <!-- Panel -->
-    <div
-      class="absolute right-0 top-0 flex h-full w-11/12 max-w-sm flex-col rounded-l-3xl bg-white shadow-xl"
-    >
+    <div class="absolute right-0 top-0 flex h-full w-11/12 max-w-sm flex-col rounded-l-3xl bg-white shadow-xl">
       <!-- Panel header -->
       <div class="flex items-center justify-between px-4 py-3">
         <div class="flex items-center gap-2">
@@ -88,12 +76,9 @@
           <span class="text-lg font-semibold text-slate-900">Bulkly</span>
         </div>
 
-        <button
-          type="button"
+        <button type="button"
           class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 text-slate-800"
-          (click)="closeMobileMenu()"
-          aria-label="Close menu"
-        >
+          (click)="closeMobileMenu()" aria-label="Close menu">
           ✕
         </button>
       </div>
@@ -102,39 +87,25 @@
 
       <!-- Links -->
       <nav class="flex flex-col gap-4 px-4 py-4 text-lg font-medium text-slate-900">
-        <a
-          routerLink="home"
-          routerLinkActive="text-blue-600"
-          (click)="closeMobileMenu()"
-        >
+        <a routerLink="home" routerLinkActive="text-blue-600" (click)="closeMobileMenu()">
           Home
         </a>
-        <a
-          routerLink="about-us"
-          routerLinkActive="text-blue-600"
-          (click)="closeMobileMenu()"
-        >
+        <a routerLink="about-us" routerLinkActive="text-blue-600" (click)="closeMobileMenu()">
           About Us
         </a>
-        <a
-          routerLink="contact"
-          routerLinkActive="text-blue-600"
-          (click)="closeMobileMenu()"
-        >
+        <a routerLink="contact" routerLinkActive="text-blue-600" (click)="closeMobileMenu()">
           Contact
         </a>
       </nav>
 
       <div class="mt-2 border-t border-slate-200 px-4 py-4 space-y-3">
         <button
-          class="w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black"
-        >
+          class="w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black">
           Customer Login
         </button>
 
         <button
-          class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-400"
-        >
+          class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-400">
           Vendor Login
         </button>
       </div>

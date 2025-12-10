@@ -6,12 +6,12 @@ import { LiveProducts } from "./live-products/live-products";
 import { ComingSoon } from "./coming-soon/coming-soon";
 
 @Component({
-  selector: 'bulkly-home',
+  selector: 'bulkly-products-landing',
   imports: [Work, SubHeader, LiveProducts, ComingSoon],
-  templateUrl: './home.html',
+  templateUrl: './products-landing.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class Home {
+export class ProductsLanding {
 
 
 

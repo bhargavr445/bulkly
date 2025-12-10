@@ -4,7 +4,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'bulkly-header',
-  imports: [RouterLink, RouterLinkActive, NgClass],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './header.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

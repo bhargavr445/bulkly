@@ -48,3 +48,11 @@ textarea.ng-invalid.ng-touched {
 .component-in {
     animation: fadeIn 0.5s ease-out forwards;
 }
+
+/* .normal-header {
+  @apply py-2 md:py-6 transition-all duration-300;
+}
+
+.shrink-header {
+  @apply py-1 md:py-3 backdrop-blur-md bg-white/80 shadow-sm transition-all duration-300;
+} */

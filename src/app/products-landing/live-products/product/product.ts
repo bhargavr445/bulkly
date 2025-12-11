@@ -20,8 +20,7 @@ export class Product {
   noOfDaysLeft = computed(() => this.#calculateNoOfDaysLeft(this.product().orderCutOffDate));
 
   #calculateNoOfDaysLeft(date): number {
-    const todaysDate = new Date();
-    return differenceInCalendarDays(date, todaysDate);
+    return differenceInCalendarDays(date, new Date());
   }
 
   navigateToProductDetails(id: number): void {

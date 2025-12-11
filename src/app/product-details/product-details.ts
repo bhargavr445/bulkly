@@ -1,9 +1,11 @@
-import { ChangeDetectionStrategy, Component, input as routeInput, computed } from '@angular/core';
-import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component, computed, input as routeInput, Signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { BulklyNav } from "../commons/bulkly-nav/bulkly-nav";
+import { TabsI } from '../interfaces/tabsI';
 
 @Component({
   selector: 'bulkly-product-details',
-  imports: [RouterLink, RouterOutlet, RouterLinkActive],
+  imports: [RouterOutlet, BulklyNav],
   templateUrl: './product-details.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -11,7 +13,7 @@ export class ProductDetails {
 
   id = routeInput.required<number>();
 
-  tabList = computed(() => {
+  tabList: Signal<TabsI[]> = computed(() => {
     return [
       { label: 'Details', navPath: `/product-details/${this.id()}/details` },
       { label: 'Test Reports', navPath: `/product-details/${this.id()}/test-reports` },
@@ -20,5 +22,9 @@ export class ProductDetails {
       { label: 'Q&A', navPath: `/product-details/${this.id()}/qa` }
     ]
   });
+
+  selectedTabEvent(event: TabsI) {
+    console.log(event);
+  }
 
 }

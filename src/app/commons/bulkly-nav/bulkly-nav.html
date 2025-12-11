@@ -1,0 +1,10 @@
+<nav class="flex overflow-x-auto rounded-2xl bg-slate-100 text-xs font-medium text-slate-500 md:text-sm">
+    @for (item of tabList(); track item.navPath) {
+    <a  class="flex-1 px-3 py-2 text-center text-slate-900"
+        [routerLink]="item.navPath" 
+        routerLinkActive="bg-indigo-600 text-white rounded-2xl" 
+        (click)="selectedTab(item)">
+        {{item.label}}
+    </a>
+    }
+</nav>

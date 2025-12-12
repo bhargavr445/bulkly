@@ -27,21 +27,13 @@ export const ProductsLandingStore = signalStore(
       pipe(
         filter(() => store._productsList().length < 1),
         tap(() => patchState(store, (state) => ({ ...state, _productsListApiLoading: true }))),
-        switchMap(() => {
-          return store._productsService.fetchLiveProducrs().pipe(
-            tapResponse({
-              next: (response: ProductI[]) => {
-                patchState(store, (state: ProductslandingI) => ({ ...state, _productsList: response, _productsListError: null }))
-              },
-              error: (error) => {
-                patchState(store, (state: ProductslandingI) => ({ ...state, _productsListError: error, _productsList: [] }))
-              },
-              finalize: () => {
-                patchState(store, (state: ProductslandingI) => ({ ...state, _productsListApiLoading: false }))
-              }
-            })
-          )
-        }),
+        switchMap(() => store._productsService.fetchLiveProducrs().pipe(
+          tapResponse({
+            next: (response: ProductI[]) => patchState(store, (state: ProductslandingI) => ({ ...state, _productsList: response, _productsListError: null })),
+            error: (error) => patchState(store, (state: ProductslandingI) => ({ ...state, _productsListError: error, _productsList: [] })),
+            finalize: () => patchState(store, (state: ProductslandingI) => ({ ...state, _productsListApiLoading: false }))
+          })
+        )),
       )
     ),
 

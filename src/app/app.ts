@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Footer } from "./commons/footer/footer";
-import { Header } from "./commons/header/header";
+import { Footer } from "./commons/components/footer/footer";
+import { Header } from "./commons/components/header/header";
 
 @Component({
   selector: 'bulkly-root',

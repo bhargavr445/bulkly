@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, input as routeInput, Signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BulklyNav } from "../commons/bulkly-nav/bulkly-nav";
+import { BulklyNav } from "../commons/components/bulkly-nav/bulkly-nav";
 import { TabsI } from '../interfaces/tabsI';
 
 @Component({

@@ -28,7 +28,7 @@
 
     <!-- Right actions (desktop) -->
     <div class="hidden items-center gap-4 md:flex">
-      <button
+      <button (click)="navigateToProfile()"
         class="hidden h-9 w-9 items-center justify-center rounded-full border border-slate-200 text-slate-700 lg:flex">
         <span class="text-lg">👤</span>
       </button>
@@ -45,7 +45,7 @@
 
     <!-- Right actions (mobile) -->
     <div class="flex items-center gap-3 md:hidden">
-      <button type="button"
+      <button type="button" (click)="navigateToProfile()"
         class="flex h-8 w-8 items-center justify-center rounded-full border border-slate-300 text-slate-800"
         aria-label="Account">
         👤

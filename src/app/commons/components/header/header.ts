@@ -1,6 +1,6 @@
 import { NgClass } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, signal } from '@angular/core';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'bulkly-header',
@@ -10,6 +10,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class Header {
 
+  #router = inject(Router);
   mobileOpen = signal(false);
   scrolled = signal(false);
 
@@ -26,6 +27,10 @@ export class Header {
 
   closeMobileMenu() {
     this.mobileOpen.set(false);
+  }
+
+  navigateToProfile(): void {
+    this.#router.navigate(['profile']);
   }
 
 }

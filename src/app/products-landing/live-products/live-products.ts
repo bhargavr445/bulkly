@@ -2,10 +2,11 @@ import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/cor
 import { ProductI } from '../../interfaces/productI';
 import { ProductsLandingStore } from '../store/products-landing-store';
 import { Product } from "./product/product";
+import { ProductCardLoader } from '../../commons/components/skeletons/product-card-loader/product-card-loader';
 
 @Component({
   selector: 'bulkly-live-products',
-  imports: [Product],
+  imports: [Product, ProductCardLoader],
   templateUrl: './live-products.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -15,6 +16,7 @@ export class LiveProducts {
 
   productsList: Signal<ProductI[]> = this.#productsLandingStore.productsListC;
   productsListError: Signal<any> = this.#productsLandingStore.productsListErrorC;
+  productsListApiLoading: Signal<any> = this.#productsLandingStore.productsListApiLoading;
 
   constructor() {
     this.#productsLandingStore.fetchAllLiveProducts();

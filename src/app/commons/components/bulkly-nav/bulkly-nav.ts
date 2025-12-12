@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { TabsI } from '../../interfaces/tabsI';
+import { TabsI } from '../../../interfaces/tabsI';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({

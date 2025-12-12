@@ -10,15 +10,22 @@
       </p>
     </div>
 
-    <!-- Cards -->
-    <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-      <!-- Card 1 -->
-      <!-- {{productsList() | async}} -->
-      @if (productsList()?.length > 0) {
-      @for (item of productsList(); track item.productId) {
-      <bulkly-product [product]="item" />
-      }
-      }
-    </div>
+    <!-- Cards / Skeleton -->
+    @if (productsListApiLoading()) {
+      <!-- skeletons use the SAME grid container as cards -->
+      <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <bulkly-product-card-loader />
+        <bulkly-product-card-loader/>
+        <!-- <bulkly-product-card-loader /> -->
+      </div>
+    } @else {
+      <div class="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        @if (productsList()?.length > 0) {
+          @for (item of productsList(); track item.productId) {
+            <bulkly-product [product]="item" />
+          }
+        }
+      </div>
+    }
   </div>
 </section>

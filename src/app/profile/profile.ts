@@ -6,7 +6,6 @@ import { RouterOutlet } from '@angular/router';
   selector: 'bulkly-profile',
   imports: [BulklyNav, RouterOutlet],
   templateUrl: './profile.html',
-  styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Profile {

@@ -2,10 +2,11 @@ import { Routes } from '@angular/router';
 import { Profile } from './profile/profile';
 import { CurrentOrders } from './profile/current-orders/current-orders';
 import { PastOrders } from './profile/past-orders/past-orders';
+import { ProductsLandingStore } from './products-landing/store/products-landing-store';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', loadComponent: () => import('./products-landing/products-landing').then(c => c.ProductsLanding) },
+    { path: 'home', loadComponent: () => import('./products-landing/products-landing').then(c => c.ProductsLanding), providers: [ProductsLandingStore] },
     { path: 'about-us', loadComponent: () => import('./about-us/about-us').then(c => c.AboutUs) },
     { path: 'info', loadComponent: () => import('./info/info').then(c => c.Info) },
     {

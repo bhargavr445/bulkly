@@ -14,12 +14,8 @@ export class LiveProducts {
 
   #productsLandingStore = inject(ProductsLandingStore);
 
-  productsList: Signal<ProductI[]> = this.#productsLandingStore.productsListC;
+  productsList: Signal<ProductI[]> = this.#productsLandingStore.liveProductsListC;
   productsListError: Signal<any> = this.#productsLandingStore.productsListErrorC;
   productsListApiLoading: Signal<any> = this.#productsLandingStore.productsListApiLoading;
-
-  constructor() {
-    this.#productsLandingStore.fetchAllLiveProducts();
-  }
 
 }

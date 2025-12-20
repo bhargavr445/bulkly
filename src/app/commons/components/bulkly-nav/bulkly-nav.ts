@@ -6,7 +6,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'bulkly-nav',
   imports: [RouterLink, RouterLinkActive],
   templateUrl: './bulkly-nav.html',
-  styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BulklyNav {

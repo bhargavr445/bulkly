@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, computed, inject, input } from '@an
 import { Router } from '@angular/router';
 import { differenceInCalendarDays } from 'date-fns';
 import { ProductsLandingStore } from '../../store/products-landing-store';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'bulkly-product',
@@ -24,7 +26,7 @@ export class Product {
   }
 
   navigateToProductDetails(id: number): void {
-    this.#productsLandingStore.fetchProductById(id);
+    this.#productsLandingStore.fetchProductById(of(id));
     this.#router.navigate([`product-details/${id}`]);
   }
 

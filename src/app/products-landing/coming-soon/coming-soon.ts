@@ -1,5 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, Signal } from '@angular/core';
 import { Product } from './product/product';
+import { ProductsLandingStore } from '../store/products-landing-store';
+import { ProductI } from '../../interfaces/productI';
 
 @Component({
   selector: 'bulkly-coming-soon',
@@ -8,5 +10,11 @@ import { Product } from './product/product';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ComingSoon {
+
+  #productsLandingStore = inject(ProductsLandingStore);
+
+  productsList: Signal<ProductI[]> = this.#productsLandingStore.comingSoonProductsListC;
+  productsListError: Signal<any> = this.#productsLandingStore.productsListErrorC;
+  productsListApiLoading: Signal<any> = this.#productsLandingStore.productsListApiLoading;
 
 }

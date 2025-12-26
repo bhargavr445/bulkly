@@ -1,11 +1,9 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { Footer } from "./commons/components/footer/footer";
-import { Header } from "./commons/components/header/header";
 
 @Component({
   selector: 'bulkly-root',
-  imports: [RouterOutlet, Header, Footer],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })

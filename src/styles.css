@@ -21,7 +21,7 @@ body {
     background-color: #f8f9fa;
 }
 
-button {
+button, a {
     cursor: pointer;
 }
 
@@ -49,6 +49,10 @@ textarea.ng-invalid.ng-touched {
     animation: fadeIn 0.5s ease-out forwards;
 }
 
+input::-webkit-inner-spin-button,
+input::-webkit-outer-spin-button {
+  display: none;
+}
 /* .normal-header {
   @apply py-2 md:py-6 transition-all duration-300;
 }
@@ -56,3 +60,7 @@ textarea.ng-invalid.ng-touched {
 .shrink-header {
   @apply py-1 md:py-3 backdrop-blur-md bg-white/80 shadow-sm transition-all duration-300;
 } */
+
+div:has(input.ng-invalid.ng-touched) > label {
+  color: red;
+}

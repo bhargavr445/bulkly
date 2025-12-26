@@ -12,7 +12,10 @@
             <label class="block text-sm font-medium text-slate-800 mb-1">
                 Name *
             </label>
-            <input type="text" placeholder="Your name" [field]="nameControl"
+            <input
+                type="text" 
+                placeholder="Your name" 
+                [field]="nameControl"
                 class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
             @if (nameControl().touched() && nameControl().errors().length > 0 ) {
             @for (item of nameControl().errors(); track item.message) {
@@ -27,8 +30,17 @@
             <label class="block text-sm font-medium text-slate-800 mb-1">
                 Email *
             </label>
-            <input type="email" placeholder="your.email@example.com" [field]="emailControl"
+            <input 
+                type="email" 
+                placeholder="your.email@example.com" 
+                [field]="emailControl"
                 class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+            @if (emailControl().pending()) {
+            <p class="mt-1 text-xs text-green-800">Checking...</p>
+            }
+            @if (isEmailAvailable()) {
+            <p class="mt-1 text-xs text-green-800">Peoceed wiith this email.</p>
+            }
             @if (emailControl().touched() && emailControl().errors().length > 0 ) {
             @for (item of emailControl().errors(); track item.message) {
             <p class="mt-1 text-xs text-red-600">{{item.message}}</p>
@@ -42,7 +54,10 @@
             <label class="block text-sm font-medium text-slate-800 mb-1">
                 Subject *
             </label>
-            <input type="text" placeholder="How can we help?" [field]="subjectControl"
+            <input 
+                type="text" 
+                placeholder="How can we help?" 
+                [field]="subjectControl"
                 class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
             @if (subjectControl().touched() && subjectControl().errors().length > 0 ) {
             @for (item of subjectControl().errors(); track item.message) {
@@ -57,8 +72,12 @@
             <label class="block text-sm font-medium text-slate-800 mb-1">
                 Message
             </label>
-            <textarea rows="4" placeholder="Tell us more about your inquiry..." [field]="messageControl"
-                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500"></textarea>
+            <textarea
+                rows="4" 
+                placeholder="Tell us more about your inquiry..." 
+                [field]="messageControl"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500">
+            </textarea>
             @if (messageControl().touched() && messageControl().errors().length > 0 ) {
             @for (item of messageControl().errors(); track item.message) {
             <p class="mt-1 text-xs text-red-600">{{item.message}}</p>

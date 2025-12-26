@@ -1,6 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { ActivatedRoute, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 
 @Component({
   selector: 'bulkly-info',
@@ -11,7 +11,12 @@ import { ActivatedRoute, RouterLink } from "@angular/router";
 export class Info {
 
   #route = inject(ActivatedRoute);
+  #router = inject(Router);
 
   sectionIdLinked$ = this.#route.fragment;
+
+  navigateTo(path: string) {
+    this.#router.navigate([path]);
+  }
 
 }

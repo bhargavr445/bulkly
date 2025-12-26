@@ -33,11 +33,11 @@
         <span class="text-lg">👤</span>
       </button>
 
-      <button class="rounded-full bg-slate-900 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black">
+      <button (click)="navigateToLogin()" class="rounded-full bg-slate-900 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black">
         Customer Login
       </button>
 
-      <button
+      <button (click)="navToVendor()"
         class="rounded-full border border-slate-300 bg-white px-6 py-2 text-sm font-semibold text-slate-900 hover:border-slate-400">
         Vendor Login
       </button>
@@ -99,12 +99,12 @@
       </nav>
 
       <div class="mt-2 border-t border-slate-200 px-4 py-4 space-y-3">
-        <button
+        <button (click)="navigateToLogin()"
           class="w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black">
           Customer Login
         </button>
 
-        <button
+        <button (click)="navToVendor()"
           class="w-full rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:border-slate-400">
           Vendor Login
         </button>

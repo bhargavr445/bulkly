@@ -1,4 +1,3 @@
-import { NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostListener, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
@@ -31,6 +30,14 @@ export class Header {
 
   navigateToProfile(): void {
     this.#router.navigate(['profile']);
+  }
+
+  navigateToLogin(): void {
+    this.#router.navigate(['login/customer-signup'], { replaceUrl: true });
+  }
+
+  navToVendor(): void {
+    this.#router.navigate(['login/vendor-login'], { replaceUrl: true });
   }
 
 }

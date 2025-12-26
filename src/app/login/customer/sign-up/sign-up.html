@@ -1,0 +1,174 @@
+<section class="min-h-screen bg-gradient-to-b from-sky-50 via-sky-50 to-white px-4 py-10">
+    <div class="mx-auto w-full max-w-md">
+        <form (submit)="createAccount($event)">
+            <!-- Top brand -->
+            <div class="flex flex-col items-center text-center">
+                <bulkly-icon />
+                <div class="mt-3 text-2xl font-semibold tracking-tight text-slate-900">Bulkly</div>
+
+                <div class="mt-6 text-lg font-medium text-slate-900">Welcome Back</div>
+                <div class="mt-1 text-sm text-slate-500">Create a new account</div>
+            </div>
+
+            <!-- Card -->
+            <div class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div class="text-lg font-semibold text-slate-900">Customer Sign Up</div>
+                <div class="mt-1 text-sm text-slate-500">Create an account to start shopping</div>
+
+                <div class="mt-6 space-y-4">
+                    <!-- Full Name -->
+                    <div>
+                        @let nameControl =  signUpForm.name;
+                        <label class="block text-sm font-semibold text-slate-900">Full Name *</label>
+                        <input
+                            type="text" 
+                            [field]="nameControl"
+                            placeholder="Enter your full name"
+                            class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                            @if (nameControl().invalid() && nameControl().touched()) {
+                                @for (error of nameControl().errors(); track error.kind) {
+                                    <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                }
+                            }
+                    </div>
+                    
+
+                    <div class="space-y-1">
+                        @let emailControl = signUpForm.email;
+                    
+                        <!-- Label -->
+                        <label class="block text-sm font-semibold text-slate-900">
+                            Email Address *
+                        </label>
+                    
+                        <!-- Input wrapper -->
+                        <div class="relative mt-2">
+                            <input 
+                                type="email" 
+                                [field]="emailControl" 
+                                placeholder="your.email@example.com" 
+                                class="w-full rounded-xl border border-slate-200 bg-slate-50
+                                                        px-4 py-3 pr-24 text-sm text-slate-900
+                                                        outline-none placeholder:text-slate-400
+                                                        focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                    
+                            <!-- Verify button (inside input) -->
+                            @if (emailControl().valid() && !emailControl().pending() && emailControl().touched()) {
+                            <button 
+                                type="button" 
+                                (click)="verifyEmail()"
+                                [class]="`absolute right-2 top-1/2 -translate-y-1/2
+                                                        rounded-lg px-4 py-1.5
+                                                        text-sm font-semibold text-slate-900
+                                                        shadow-sm ring-1 ring-slate-200
+                                                        hover:bg-slate-50 active:scale-95 transition ${emailControl().valid() ?  'bg-green-300' : 'bg-white'} `">
+                                Verify
+                            </button>
+                            }
+                        </div>
+                    
+                        <!-- Async validation -->
+                        @if (emailControl().pending()) {
+                        <p class="flex items-center gap-1 text-xs text-green-600">Checking...</p>
+                        }
+                    
+                        <!-- Error messages -->
+                        @if (emailControl().invalid() && emailControl().touched()) {
+                        @for (error of emailControl().errors(); track error.kind) {
+                        <p class="text-xs text-red-600">{{ error.message }}</p>
+                        }
+                        }
+                    
+                        <!-- Success state -->
+                        @if (emailControl().valid() && emailControl().touched()) {
+                        <p class="flex items-center gap-1 text-xs text-green-600">
+                            <span class="inline-flex h-4 w-4 items-center justify-center rounded-full border border-green-600">
+                                ✓
+                            </span>
+                            Email is valid
+                        </p>
+                        }
+                    </div>
+                    @if (signUpForm.email().valid()) {
+                    <div>
+                        @let emailConfirmation = signUpForm.emailVerificationCode;
+                        <bulkly-otp 
+                            [email]="signUpForm.email().value()"
+                            [isValid]="emailConfirmation().valid()" 
+                            (otpEmitter)="otpEmitter($event)" />
+                    </div>
+                    }
+
+
+                    <!-- Mobile -->
+                    <div>
+                        @let mobileNumberControl =  signUpForm.mobileNumber;
+                        <label class="block text-sm font-semibold text-slate-900">Mobile Number *</label>
+                        <input 
+                            type="tel"
+                            [field]="mobileNumberControl"
+                            placeholder="+91 98765 43210"
+                            class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                            @if (mobileNumberControl().invalid() && mobileNumberControl().touched()) {
+                                @for (error of mobileNumberControl().errors(); track error.kind) {
+                                    <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                }
+                            }
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        @let passwordControl =  signUpForm.password;
+                        <label class="block text-sm font-semibold text-slate-900">Create Password *</label>
+                        <input
+                            type="password"
+                            [field]="passwordControl"
+                            placeholder="Create a strong password"
+                            class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                            @if (passwordControl().invalid() && passwordControl().touched()) {
+                                @for (error of passwordControl().errors(); track error.kind) {
+                                    <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                }
+                            }
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div>
+                        @let confirmPasswordControl =  signUpForm.confirmPassword;
+                        <label class="block text-sm font-semibold text-slate-900">Confirm Password *</label>
+                        <input 
+                            type="password"
+                            [field]="confirmPasswordControl" 
+                            placeholder="Re-enter your password"
+                            class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                            @if (confirmPasswordControl().invalid() && confirmPasswordControl().touched()) {
+                                @for (error of confirmPasswordControl().errors(); track error.kind) {
+                                    <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                }
+                            }
+                    </div>
+
+                    <!-- CTA -->
+                    <button type="submit"
+                        class="flex w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black">
+                        Create Account
+                    </button>
+                </div>
+            </div>
+
+            <!-- Footer links -->
+            <div class="mt-6 text-center text-sm text-slate-600">
+                <div>
+                    Already have an account?
+                    <a class="font-semibold text-sky-600 hover:text-sky-700" (click)="navigateTo('login/customer-login')">Sign in</a>
+                </div>
+
+                <div class="mt-3 text-sm text-slate-600">
+                    Are you a vendor?
+                    <a class="font-semibold text-sky-600 hover:text-sky-700" routerLink="/vendor-signin">Sign in
+                        here</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

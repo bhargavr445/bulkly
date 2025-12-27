@@ -3,8 +3,8 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { Field, form, required, SchemaPathTree } from '@angular/forms/signals';
 import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
-import { BulkliIcon } from '../../../commons/components/bulkly-icon/bulkly-icon';
-import { ValidationMessages } from '../../../commons/validation-messages.constants';
+import { BulkliIcon } from '../../commons/components/bulkly-icon/bulkly-icon';
+import { ValidationMessages } from '../../commons/validation-messages.constants';
 
 @Component({
   selector: 'bulkly-login',

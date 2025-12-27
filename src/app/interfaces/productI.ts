@@ -11,7 +11,7 @@ export interface ProductI {
     productMediaData: ProductMediaData;
 }
 
-export interface ProductMediaData {
+interface ProductMediaData {
     gif:    any;
     images: any[];
     logo:   any;

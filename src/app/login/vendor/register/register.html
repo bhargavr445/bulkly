@@ -1,1 +1,252 @@
-<p>register works!</p>
+<section class="min-h-screen bg-gradient-to-b from-sky-50 via-sky-50 to-white px-4 py-10">
+    <div class="mx-auto w-full max-w-md">
+            <!-- Top brand -->
+            <div class="flex flex-col items-center text-center">
+                <bulkly-icon />
+                <div class="mt-3 text-2xl font-semibold tracking-tight text-slate-900">Bulkly</div>
+
+                <div class="mt-6 text-lg font-medium text-slate-900">Vendor Portal</div>
+                <div class="mt-1 text-sm text-slate-500">Join Bulkly as a verified vendor</div>
+            </div>
+            <!-- step1 venfor info form -->
+             @if (this.showStep1()) {
+                 <form >
+     
+                     <!-- Card -->
+                     <div class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                         <div class="text-lg font-semibold text-slate-900">Vendor Registration</div>
+                         <div class="mt-1 text-sm text-slate-500">Step 1 of 2: Company Information</div>
+     
+                         <div class="mt-6 space-y-4">
+                             <!-- Full Name -->
+                             <div>
+                                 @let companyNameControl =  registrationForm.companyName;
+                                 <label class="block text-sm font-semibold text-slate-900">Company Name *</label>
+                                 <input
+                                     type="text" 
+                                     [field]="companyNameControl"
+                                     placeholder="Your Company Pvt. Ltd"
+                                     class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                                     @if (companyNameControl().invalid() && companyNameControl().touched()) {
+                                         @for (error of nameControl().errors(); track error.kind) {
+                                             <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                         }
+                                     }
+                             </div>
+     
+                             <!-- Company Address -->
+                             <div>
+                                 @let companyAddressControl =  registrationForm.companyAddress;
+                                 <label class="block text-sm font-semibold text-slate-900">Company Address *</label>
+                                 <input
+                                 type="text"
+                                 [field]="companyAddressControl"
+                                 placeholder="Full registered address"
+                                 class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500"
+                                 />
+                                 @if (companyAddressControl().invalid() && companyAddressControl().touched()) {
+                                         @for (error of nameControl().errors(); track error.kind) {
+                                             <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                         }
+                                     }
+                             </div>
+     
+     
+                             <div>
+                                 @let ownerNameControl =  registrationForm.ownerName;
+                                 <label class="block text-sm font-semibold text-slate-900">Owner Name *</label>
+                                 <input
+                                     type="text" 
+                                     [field]="ownerNameControl"
+                                     placeholder="Full Name"
+                                     class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                                     @if (ownerNameControl().invalid() && ownerNameControl().touched()) {
+                                         @for (error of nameControl().errors(); track error.kind) {
+                                             <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                         }
+                                     }
+                             </div>
+                             
+     
+                             <div class="space-y-1">
+                                 @let ownerEmailControl = registrationForm.ownerEmail;
+                             
+                                 <!-- Label -->
+                                 <label class="block text-sm font-semibold text-slate-900">
+                                     Owner Email *
+                                 </label>
+                             
+                                 <!-- Input wrapper -->
+                                 <div class="relative mt-2">
+                                     <input 
+                                         type="email" 
+                                         [field]="ownerEmailControl" 
+                                         placeholder="your.email@example.com" 
+                                         class="w-full rounded-xl border border-slate-200 bg-slate-50
+                                                                 px-4 py-3 pr-24 text-sm text-slate-900
+                                                                 outline-none placeholder:text-slate-400
+                                                                 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                             
+                                     <!-- Verify button (inside input) -->
+                                     @if (ownerEmailControl().valid() && !ownerEmailControl().pending() && ownerEmailControl().touched()) {
+                                     <button 
+                                         type="button" 
+                                         (click)="verifyEmail()"
+                                         [class]="`absolute right-2 top-1/2 -translate-y-1/2
+                                                                 rounded-lg px-4 py-1.5
+                                                                 text-sm font-semibold text-slate-900
+                                                                 shadow-sm ring-1 ring-slate-200
+                                                                 hover:bg-slate-50 active:scale-95 transition ${emailControl().valid() ?  'bg-green-300' : 'bg-white'} `">
+                                         Verify
+                                     </button>
+                                     }
+                                 </div>
+                             
+                                 <!-- Async validation -->
+                                 @if (ownerEmailControl().pending()) {
+                                 <p class="flex items-center gap-1 text-xs text-green-600">Checking...</p>
+                                 }
+                             
+                                 <!-- Error messages -->
+                                 @if (ownerEmailControl().invalid() && ownerEmailControl().touched()) {
+                                 @for (error of emailControl().errors(); track error.kind) {
+                                 <p class="text-xs text-red-600">{{ error.message }}</p>
+                                 }
+                                 }
+                             
+                                 <!-- Success state -->
+                                 @if (ownerEmailControl().valid() && ownerEmailControl().touched()) {
+                                 <p class="flex items-center gap-1 text-xs text-green-600">
+                                     <span class="inline-flex h-4 w-4 items-center justify-center rounded-full border border-green-600">
+                                         ✓
+                                     </span>
+                                     Email is valid
+                                 </p>
+                                 }
+                             </div>
+                             @if (registrationForm.ownerEmail().valid()) {
+                             <div>
+                                 @let emailConfirmation = signUpForm.emailVerificationCode;
+                                 <bulkly-otp 
+                                     [email]="signUpForm.email().value()"
+                                     [isValid]="emailConfirmation().valid()" 
+                                     (otpEmitter)="otpEmitter($event)" />
+                             </div>
+                             }
+     
+     
+                             <!-- Mobile -->
+                             <div>
+                                 @let ownerMobileNumberControl =  registrationForm.ownerMobileNumber;
+                                 <label class="block text-sm font-semibold text-slate-900">Mobile Number *</label>
+                                 <input 
+                                     type="tel"
+                                     [field]="ownerMobileNumberControl"
+                                     placeholder="+91 98765 43210"
+                                     class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                                     @if (ownerMobileNumberControl().invalid() && ownerMobileNumberControl().touched()) {
+                                         @for (error of mobileNumberControl().errors(); track error.kind) {
+                                             <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                         }
+                                     }
+                             </div>
+     
+                             <!-- Password -->
+                             <div>
+                                 @let passwordControl =  registrationForm.password;
+                                 <label class="block text-sm font-semibold text-slate-900">Create Password *</label>
+                                 <input
+                                     type="password"
+                                     [field]="passwordControl"
+                                 placeholder="Create a password"
+                     autocomplete="new-password"
+                                     class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                                     @if (passwordControl().invalid() && passwordControl().touched()) {
+                                         @for (error of passwordControl().errors(); track error.kind) {
+                                             <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                         }
+                                     }
+                             </div>
+     
+                             <!-- Confirm Password -->
+                             <div>
+                                 @let confirmPasswordControl =  registrationForm.confirmPassword;
+                                 <label class="block text-sm font-semibold text-slate-900">Confirm Password *</label>
+                                 <input 
+                                     type="password"
+                                     [field]="confirmPasswordControl" 
+                                     type="password"
+                     placeholder="Confirm your password"
+                                     class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                                     @if (confirmPasswordControl().invalid() && confirmPasswordControl().touched()) {
+                                         @for (error of confirmPasswordControl().errors(); track error.kind) {
+                                             <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                         }
+                                     }
+                             </div>
+     
+                             <!-- CTA -->
+                             <button (click)="goToProductInfo($event)"
+                                 class="flex w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-black">
+                                 Continue to Product Information
+                             </button>
+                         </div>
+                     </div>
+                 </form>
+             } @else {
+                 <form>
+                 
+                     <!-- Card -->
+                     <div class="mt-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
+                         <div class="text-lg font-semibold text-slate-900">Vendor Registration</div>
+                         <div class="mt-1 text-sm text-slate-500">Step 2 of 2: Product & Quality Information</div>
+                 
+                         <div class="mt-6 space-y-4">
+                             <!-- Full Name -->
+                             <div>
+                                 @let productNameControl = productInfoForm.productName;
+                                 <label class="block text-sm font-semibold text-slate-900">Company Name *</label>
+                                 <input 
+                                     type="text" 
+                                     [field]="productNameControl" 
+                                     placeholder="Your Company Pvt. Ltd"
+                                     class="mt-2 w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:border-sky-500 focus:bg-white focus:ring-1 focus:ring-sky-500" />
+                                 @if (productNameControl().invalid() && productNameControl().touched()) {
+                                 @for (error of nameControl().errors(); track error.kind) {
+                                 <p class="mt-1 text-xs text-red-600">{{error.message}}</p>
+                                 }
+                                 }
+                             </div>
+                 
+                 
+                 
+                             <div class="space-y-3 pt-2">
+                                 <button type="submit"
+                                     class="w-full rounded-xl bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-sm hover:bg-black">
+                                     Submit Application</button>
+                 
+                                 <button type="button" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-sm font-semibold text-slate-900
+                                             hover:border-slate-400 hover:bg-slate-50" (click)="back()">Back</button>
+                             </div>
+                         </div>
+                     </div>
+                 </form>
+             }
+
+             <!-- Footer links -->
+                     <div class="mt-6 text-center text-sm text-slate-600">
+                         <div>
+                             Already registered? 
+                             <a class="font-semibold text-sky-600 hover:text-sky-700" (click)="navigateTo('login/vendor-login')">Sign in</a>
+                         </div>
+     
+                         <div class="mt-3 text-sm text-slate-600">
+                             Are you a customer? 
+                             <a class="font-semibold text-sky-600 hover:text-sky-700" (click)="navigateTo('login/customer-login')">Sign in
+                                 here</a>
+                         </div>
+                     </div>
+
+
+    </div>
+</section>

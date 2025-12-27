@@ -92,7 +92,7 @@ export const routes: Routes = [
             },
             {
                 path: 'customer-login',
-                loadComponent: () => import('./login/customer/login/login').then(c => c.Login), data: { type: 'CUSTOMER' }
+                loadComponent: () => import('./login/login/login').then(c => c.Login), data: { type: 'CUSTOMER' }
             },
             {
                 path: 'customer-signup',
@@ -104,7 +104,7 @@ export const routes: Routes = [
             },
             {
                 path: 'vendor-login',
-                loadComponent: () => import('./login/customer/login/login').then(c => c.Login), data: { type: 'VENDOR' }
+                loadComponent: () => import('./login/login/login').then(c => c.Login), data: { type: 'VENDOR' }
             },
         ]
     },
